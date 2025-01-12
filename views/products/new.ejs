@@ -1,0 +1,163 @@
+<% layout('layouts/boilerplate') %>
+<%- include('../partials/navbar') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* Basic styling for footer */
+.footer {
+    background-color: #0a0908;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top:  8.30rem;
+
+}
+
+/* Container for footer content */
+.footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Styling for the text */
+.footer-text {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+/* Styling for footer links */
+.footer-links {
+    margin-top: 10px;
+}
+
+.footer-link {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .footer-text {
+        font-size: 1rem;
+    }
+
+    .footer-links {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-text {
+        font-size: 0.9rem;
+    }
+
+    .footer-links {
+        font-size: 0.8rem;
+    }
+}
+
+  </style>
+</head>
+<body>
+  <div class="row mx-auto">
+    <div class="col-6 mx-auto">
+        <form action="/products" method="POST" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label for="naam" class="form-label">Name:</label>
+                <input type="text" class="form-control" name="name" id="naam" required placeholder="Enter the name">
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter the name field.
+                </div>
+            
+            </div>
+
+            <div class="mb-3">
+                <label for="img" class="form-label">Image: </label>
+                <input type="text" class="form-control" name="img" id="img" aria-describedby="emailHelp" placeholder="Image URL of the Product" required>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter the Url field.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="paisa" class="form-label">Price</label>
+                <input type="number" class="form-control" name="price" id="paisa" aria-describedby="emailHelp" placeholder="Price of the Product" required>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter the Price field.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="desc" class="form-label">Description: </label>
+                <textarea name="desc" id="desc" rows="5" class="form-control" placeholder="Description of product" required></textarea>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter the Descr field.
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add Product</button>
+        </form>
+    </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <div class="footer-content">
+          <p class="footer-text">© 2024 Apna Bazar. All rights reserved.</p>
+          <div class="footer-links">
+              <a href="/about" class="footer-link">About Us</a> |
+              <a href="/services" class="footer-link">Services</a> |
+              <a href="/company" class="footer-link">Company</a> |
+              <a href="/legal" class="footer-link">Legal</a>
+          </div>
+      </div>
+  </div>
+</footer>
+
+
+<script>
+  // Immediately invoked function expression (IIFE) for form validation
+  (() => {
+    'use strict'
+
+    const forms = document.querySelectorAll('.needs-validation')
+
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+  })()
+</script>
+
+</body>
+</html>

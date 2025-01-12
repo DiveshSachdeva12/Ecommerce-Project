@@ -1,0 +1,186 @@
+<% layout('layouts/boilerplate') %>
+<%- include('../partials/navbar') %>
+
+<div class="cart-page-container">
+    <!-- Cart Items Section -->
+    <div class="cart-container">
+        <h2>Your Cart</h2>
+        <ul class="cart-items">
+            <% for (let item of user.cart) { %>
+                <li class="cart-item">
+                    <div class="cart-item-img">
+                        <img src="<%= item.img %>" alt="<%= item.name %>" id="img">
+                    </div>
+                    <div class="cart-item-details">
+                        <h4><%= item.name %></h4>
+                        <p>Price: ₹<%= item.price %></p>
+                    </div>
+                    <form action="/user/cart/remove/<%= item._id %>" method="POST" style="display: inline;">
+                        <button type="submit" class="remove-btn">Remove</button>
+                    </form>
+                </li>
+            <% } %>
+        </ul>
+    </div>
+
+    <!-- Cart Summary Section -->
+    <div class="cart-summary">
+        <h2>Order Summary</h2>
+        <div class="summary-item">
+            <span>Items in Cart:</span>
+            <span><%= totalItems %> item(s)</span>
+        </div>
+        <div class="summary-item">
+            <span>Discount:</span>
+            <span>₹0.00</span>
+        </div>
+        <div class="summary-item">
+            <span>Coupons for you:</span>
+            <span>₹0.00</span>
+        </div>
+        <div class="summary-item">
+            <span>Platform Fee:</span>
+            <span>₹0.00</span>
+        </div>
+        <div class="summary-item">
+            <span>Delivery Charge:</span>
+            <span>₹50.00</span>
+        </div>
+        <div class="summary-total">
+            <span>Total:</span>
+            <span>₹<%= totalPrice %></span>  <!-- Display totalPrice, which already includes or excludes delivery charge -->
+        </div>
+        
+        
+        
+        <button class="place-order-btn">Place Order</button>
+    </div>
+</div>
+
+<style>
+    .cart-page-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin: 20px;
+    }
+
+    .cart-container {
+        flex: 3;
+        max-width: 60%;
+        border: 1px solid #ddd;
+        padding: 20px;
+        background-color: #f9f9f9;
+    }
+
+    .cart-items {
+        list-style: none;
+        padding: 0;
+    }
+
+    .cart-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+    }
+
+    .cart-item-img {
+        margin-right: 15px;
+    }
+
+    .cart-item-details {
+        flex-grow: 1;
+    }
+
+    #img {
+        height: 100px;
+        width: 100px;
+        padding: 5px;
+    }
+
+    .cart-summary {
+        flex: 1;
+        max-width: 30%;
+        border: 1px solid #ddd;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .summary-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-size: 1rem;
+    }
+
+    .summary-total {
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-top: 20px;
+    }
+
+    .place-order-btn {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 20px;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+
+    .place-order-btn:hover {
+        background-color: #0056b3;
+    }
+    .remove-btn {
+        padding: 8px 15px;
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        border-radius: 5px;
+        transition: background-color 0.3s, transform 0.2s;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .remove-btn:hover {
+        background-color: #e60000;
+        transform: scale(1.05);
+    }
+
+    .remove-btn:focus {
+        outline: none;
+    }
+
+    .remove-btn i {
+        margin-right: 8px;
+    }
+
+    .loading {
+        font-size: 0.8rem;
+        color: #fff;
+        margin-left: 10px;
+    }
+</style>
+
+<script>
+    document.querySelectorAll('.remove-btn').forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); 
+            const confirmation = confirm("Are you sure you want to remove this item from your cart?");
+            if (confirmation) {
+                this.closest('form').submit(); 
+            }
+        });
+    });
+</script>

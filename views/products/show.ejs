@@ -1,0 +1,157 @@
+<%- include('../partials/navbar') %>
+<%- include('../partials/flash') %>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="/css/star.css">
+    <style>
+        #card {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .card {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            height: 650px;
+            border: 1px solid #ddd;
+        }
+
+        .card-img-top {
+            max-width: 100%;
+            padding: 50px;
+            object-fit: cover; 
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
+            flex-grow: 1; 
+        }
+
+        .card-title {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            margin-top: auto;
+            display: block;
+            margin-left: 10px;
+            width: 200px;
+            background-color: rgb(37 99 235);
+            color: white;
+            gap: 5rem;
+        }
+        #comment-review-box{
+            height: 200px;
+            width: 500px;
+        }
+        #delete-comment{
+            width: 150px;
+        }
+
+        @media (max-width: 768px) {
+            .col-lg-3 {
+                flex: 0 0 50%; 
+            }
+        }
+        </style>
+</head>
+<body>
+    <div class="mb-3">
+        <!-- <% if (msg && msg.length) { %>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong><%= msg %></strong> 
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>   
+            </div>
+        <% } %>
+    </div> -->
+
+    <div class="container my-2">
+        <!-- displaying flash -->
+        <div class="row g-1 d-flex align-items-stretch" id="card">
+            <div class="col-lg-4 d-flex" id="img-ca rd">
+                
+                <div class="card mx-auto equal-card" style="width: 18rem;">
+                    <img src="<%= foundProduct.img %>" class="card-img-top" alt="<%= foundProduct.name %>" id="image-card">
+                    
+                    <div class="card-body">
+                        <h2 class="card-title"><%= foundProduct.name %></h2>
+                        <h5 class="card-title">₹<%= foundProduct.price %></h5>
+                        <p class="card-text"><%= foundProduct.desc %></p>
+                        <% if (currentUser && currentUser.role === 'seller') { %>
+                        <a href="/products/<%= foundProduct._id %>/edit" class="btn btn-primary">Edit</a>
+                        <% } %>
+                        <form action="/user/<%= foundProduct._id %>/add" method="POST">
+                        <button class="btn btn-info">Add to cart</button>
+                        </form>
+                        <a href="#" class="btn btn-primary">Buy Product</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+            <h1 class="display-5"><Strong>Leave a Review</Strong></h1>
+                <form action="/products/<%= foundProduct._id %>/review" method="POST">
+                    <!-- Star Rating -->
+                    <fieldset class="starability-basic">
+                        <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+                        <input type="radio" id="first-rate1" name="rating" value="1" />
+                        <label for="first-rate1" title="Terrible">1 star</label>
+                        <input type="radio" id="first-rate2" name="rating" value="2" />
+                        <label for="first-rate2" title="Not good">2 stars</label>
+                        <input type="radio" id="first-rate3" name="rating" value="3" />
+                        <label for="first-rate3" title="Average">3 stars</label>
+                        <input type="radio" id="first-rate4" name="rating" value="4" />
+                        <label for="first-rate4" title="Very good">4 stars</label>
+                        <input type="radio" id="first-rate5" name="rating" value="5" />
+                        <label for="first-rate5" title="Amazing">5 stars</label>
+                      </fieldset>
+            
+                    <!-- Comment Box -->
+                    <div class="mb-3">
+                        <label class="form-label" for="comment">Comment:</label>
+                        <textarea class="form-control" rows="3" name="comment" id="comment" required></textarea>
+                    </div>
+            
+                    <button type="submit" class="btn btn-primary">Add Review</button>
+                </form>
+            
+                <!-- Reviews Display -->
+                <div class="my-3">
+                    <% if (foundProduct.reviews.length > 0) { %>
+                        <% for (let review of foundProduct.reviews) { %>
+                            <div class="border p-3 mb-3 rounded">
+                                <p class="starability-result" data-rating="<%= review.rating %>">
+                                    Rated: <%= review.rating %> star
+                                </p>
+                                <p class="mb-1">Comment: <%= review.comment %></p>
+                                <% if (review.createdAt) { %>
+                                    <p class="text-muted mb-2">Posted on: <%= new Date(review.createdAt).toDateString() %></p>
+                                <% } %>
+                                <a href="/reviews/<%= review._id %>?_method=DELETE" class="btn btn-danger">Delete</a>
+                            </div>
+                        <% } %>
+                    <% } else { %>
+                        <p>No reviews yet. Be the first to leave a review!</p>
+                    <% } %>
+                </div>
+                
+            
+</body>
+</html>

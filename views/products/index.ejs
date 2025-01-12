@@ -1,0 +1,173 @@
+<% layout('layouts/boilerplate') %>
+<%- include('../partials/navbar') %>
+<%- include('../partials/flash') %>
+<%- include('../partials/slider') %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        #card {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column; 
+            height: 100%;
+            border: 1px solid #ddd;
+        }
+
+        .card-img-top {
+            max-width: 100%;
+            padding: 30px;
+            object-fit: cover; 
+
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
+            flex-grow: 1; 
+        }
+
+        .card-title {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            margin-top: auto;
+             display: block;
+            margin-left: 25px;
+            width: 200px;
+            background-color:rgb(37 99 235);
+            color: white;
+        }
+        #DELETE-product{
+            margin-top: 10px;
+        }
+        @media (max-width: 768px) {
+            .col-lg-3 {
+                flex: 0 0 50%; 
+            }
+        }
+        /* Basic styling for footer */
+.footer {
+    background-color: #000000;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Container for footer content */
+.footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Styling for the text */
+.footer-text {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+/* Styling for footer links */
+.footer-links {
+    margin-top: 10px;
+}
+
+.footer-link {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .footer-text {
+        font-size: 1rem;
+    }
+
+    .footer-links {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-text {
+        font-size: 0.9rem;
+    }
+
+    .footer-links {
+        font-size: 0.8rem;
+    }
+}
+
+ 
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <div class="row g-1 d-flex align-items-stretch" id="card">
+            <% for(let item of products) { %>
+                <div class="col-lg-3 d-flex">
+                    <div class="card mx-auto equal-card" style="width: 18rem;">
+                        <img src="<%= item.img %>" class="card-img-top" alt="<%= item.name %>" id="image-card">
+                        <div class="card-body">
+                            <h2 class="card-title"><%= item.name %></h2>
+                            <h5 class="card-title">₹<%= item.price %></h5>
+                            <p class="card-text"><%= item.desc %></p>
+                            <a href="/products/<%= item._id %>" class="btn btn-info">view Product</a>
+                            <% if (currentUser && currentUser.role === 'seller') { %>
+
+                            <form action="/products/<%= item._id %>?_method=DELETE" method="POST">
+                        <button type="submit" class="btn btn-primary" id="DELETE-product">Delete</button>
+                            </form>
+                            <% } %>
+
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© 2024 Apna Bazar. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="/about" class="footer-link">About Us</a> |
+                    <a href="/services" class="footer-link">Services</a> |
+                    <a href="/company" class="footer-link">Company</a> |
+                    <a href="/legal" class="footer-link">Legal</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    
+</body>
+</html>

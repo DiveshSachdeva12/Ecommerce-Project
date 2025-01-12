@@ -1,0 +1,125 @@
+<% layout('layouts/boilerplate') %>
+<%- include('../partials/flash') %>
+
+<style>
+  /* General reset and styling for the body */
+  body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f4f7fc; /* Light background color */
+  }
+
+  /* Container for the login form */
+  .login-container {
+      background-color: white;
+      width: 100%;
+      max-width: 400px;
+      margin: 20px;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Heading style */
+  .login-container h2 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 30px;
+      color: #333;
+  }
+
+  /* Form group styling */
+  .form-group {
+      margin-bottom: 20px;
+  }
+
+  .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #555;
+  }
+
+  .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      outline: none;
+      font-size: 16px;
+      color: #333;
+  }
+
+  .form-group input:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+  }
+
+  /* Login button style */
+  .login-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+  }
+
+  .login-btn:hover {
+      background-color: #0056b3;
+  }
+
+  /* Bottom section for signup link */
+  .bottom-section {
+      text-align: center;
+      margin-top: 20px;
+  }
+
+  .bottom-section p {
+      font-size: 14px;
+      color: #666;
+  }
+
+  .bottom-section a {
+      color: #007bff;
+      text-decoration: none;
+  }
+
+  .bottom-section a:hover {
+      text-decoration: underline;
+  }
+</style>
+
+<!-- Login Form -->
+<div class="login-container">
+  <h2 style="outline: none;">Login to Your Account</h2>
+  <form action="/login" method="POST">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" placeholder="Enter your username" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+    </div>
+    
+    <button type="submit" class="login-btn">Login</button>
+  </form>
+
+  <div class="bottom-section">
+    <p>Don't have an account? <a href="/register">Sign Up</a></p>
+  </div>
+</div>
+
+</body>
+</html>

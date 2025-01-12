@@ -1,0 +1,11 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore cookies-demo directory
+cookies-demo/
+
+# Ignore session-demo directory
+session-demo/
+
+# Ignore .env file with sensitive data
+.env
