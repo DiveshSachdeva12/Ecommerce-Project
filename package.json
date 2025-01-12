@@ -4,7 +4,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app"
+    "start": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
@@ -20,7 +20,7 @@
     "flash": "^1.1.0",
     "joi": "^17.13.3",
     "method-override": "^3.0.0",
-    "mongoose": "^8.9.2",
+    "mongoose": "^8.9.4",
     "nodemon": "^3.1.9",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",

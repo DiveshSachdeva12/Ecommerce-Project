@@ -15,8 +15,7 @@ const seedDB = require('./seed');
 const cartRoutes = require('./routes/cart');
 require('dotenv').config();
 
-
-const app = express();
+const app = express()
 
 // Database Connection
 mongoose.connect(process.env.MONGODB_URL, {
@@ -27,7 +26,6 @@ mongoose.connect(process.env.MONGODB_URL, {
         console.error("Database connection error:", err.message);
         process.exit(1);
     });
-
 // View Engine Setup
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
