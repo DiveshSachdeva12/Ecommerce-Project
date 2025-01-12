@@ -6,6 +6,9 @@ const { isLoggedIn}=require('../middleware');
 
 
 
+router.get('/',(req,res)=>{
+    res.render('auth/signup');
+})  
 router.get('/register',(req,res)=>{
     res.render('auth/signup');
 })  
