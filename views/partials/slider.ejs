@@ -7,38 +7,65 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-       #carouselExampleIndicators {
-    height: 200px;
+     /* Default styles for the home page */
+#carouselExampleIndicators {
+    height: 400px;
 }
 .carousel-inner {
-    height: 100%; 
+    height: 100%;
 }
 .carousel-inner img {
     width: 100%;
-    height: 400px; 
+    height: 600px;
     object-fit: cover;
 }
 /* Change the size and style of the previous icon */
 .carousel-control-prev-icon {
-  width: 4rem; 
-  height: 4rem; 
-  background-color:black; 
-  border-radius: 50%;
-  margin-top: -20rem; 
-  background-size: 60%;
+    width: 4rem;
+    height: 4rem;
+    background-color: black;
+    border-radius: 50%;
+    margin-top: -20rem;
+    background-size: 60%;
 }
-
 /* Change the size and style of the next icon */
 .carousel-control-next-icon {
-  width: 4rem; 
-  height: 4rem; 
-  background-color:black; 
-  border-radius: 50%;
-  margin-top: -20rem; 
-  background-size: 60%;
+    width: 4rem;
+    height: 4rem;
+    background-color: black;
+    border-radius: 50%;
+    margin-top: -20rem;
+    background-size: 60%;
 }
 
-
+/* Mobile-specific styles (for screens smaller than 768px) */
+@media (max-width: 768px) {
+    #carouselExampleIndicators {
+        height: 200px; /* Adjust height for mobile */
+    }
+    .carousel-inner {
+        height: 100%;
+    }
+    .carousel-inner img {
+        width: 100%;
+        height: 400px; /* Adjust image height for mobile */
+        object-fit: cover;
+    }
+    /* Adjust previous icon size and position for mobile */
+    .carousel-control-prev-icon {
+        width: 3rem;
+        height: 3rem;
+        margin-top: -10rem; /* Adjust positioning */
+        background-size: 50%; /* Smaller icon */
+    }
+    /* Adjust next icon size and position for mobile */
+    .carousel-control-next-icon {
+        width: 3rem;
+        height: 3rem;
+        margin-top: -10rem; /* Adjust positioning */
+        background-size: 50%; /* Smaller icon */
+    }
+}
 
     </style>
 </head>
