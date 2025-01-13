@@ -341,12 +341,30 @@
         width: 100%;
     }
 }
+.h1-product{
+    text-align: center;
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 40px;
+    font-weight: bold;
+    margin-left: 0; /* Remove fixed margin */
+    margin-right: 0; /* Ensure no right margin */
+    width: 100%; /* Ensure full width */
+    padding: 0 10px; 
+    margin-top: -11rem !important;
+}
+.container.my-5 {
+    margin-top: -10rem !important; /* Remove top margin */
+    margin-bottom: 3rem; /* Keep the bottom margin if needed */
+}
+
 
     </style>
 </head>
 <body>
-    <div class="container my-5">
+    <div class="container" style="margin-top: 0;">
         <div class="row g-3" id="card">
+            <h1 class="h1-product">Explore Our Products</h1>
             <% for(let item of products) { %>
                 <div class="col-lg-3 col-md-4 col-sm-6 d-flex">
                     <div class="card mx-auto">
@@ -372,7 +390,6 @@
         </div>
     </div>
     
-
     <footer class="footer">
         <div class="container">
             <!-- Footer Sections for Links -->
