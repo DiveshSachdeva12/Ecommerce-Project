@@ -7,132 +7,284 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    /* Basic styling for footer */
 .footer {
-    background-color: #0a0908;
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    margin-top:  8.30rem;
-
+    background: linear-gradient(135deg, #112938, #3e6b99);
+    color: #f5f5f5;
+    padding: 60px 0;
+    font-family: Arial, sans-serif;
+    text-align: left;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-in-out forwards;
+    margin-top: 2rem;
 }
 
-/* Container for footer content */
-.footer .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+/* Fade-in effect */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
-/* Styling for the text */
-.footer-text {
-    font-size: 1.2rem;
+/* Footer Sections */
+.footer-sections {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.footer-section {
+    flex: 1;
+    margin-right: 30px;
+}
+
+.footer-section:last-child {
+    margin-right: 0;
+}
+
+.footer-title {
+    font-size: 1.4rem;
+    color: #f5f5f5;
+    font-weight: bold;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeInTitle 1s ease-in-out forwards;
+}
+
+@keyframes fadeInTitle {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Footer Links */
+.footer-links {
+    list-style-type: none;
+    padding: 0;
     margin: 0;
 }
 
-/* Styling for footer links */
-.footer-links {
-    margin-top: 10px;
+.footer-link {
+    color: #d1d1d1;
+    font-size: 1rem;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: fadeInLink 1.5s ease-in-out forwards;
+    animation-delay: 0.3s;
 }
 
-.footer-link {
-    color: #fff;
-    text-decoration: none;
-    padding: 5px;
+@keyframes fadeInLink {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .footer-link:hover {
-    text-decoration: underline;
+    color: black;
 }
 
-/* Responsive design for smaller screens */
+/* Footer Subscription */
+.footer-subscription {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.footer-subscription-text {
+    font-size: 1rem;
+    color: #f5f5f5;
+    margin-bottom: 20px;
+}
+
+.footer-subscription-form {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-subscription-input {
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #444;
+    margin-right: 15px;
+    width: 250px;
+}
+
+.footer-subscription-btn {
+    padding: 12px 20px;
+    background-color: #1e90ff;
+    color: white;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.footer-subscription-btn:hover {
+    background-color: #1c75b9;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    text-align: center;
+    margin-top: 80px;
+    border-top: 1px solid #444;
+    padding-top: 20px;
+}
+
+.footer-text {
+    font-size: 1rem;
+    color: #d1d1d1;
+    margin: 0;
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    .footer-text {
-        font-size: 1rem;
+    .footer-sections {
+        flex-direction: column;
+        text-align: center;
     }
 
     .footer-links {
-        font-size: 0.9rem;
+        margin-top: 20px;
+    }
+
+    .footer-subscription-form {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-subscription-input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .footer-subscription-btn {
+        width: 100%;
     }
 }
-
-@media (max-width: 480px) {
-    .footer-text {
-        font-size: 0.9rem;
-    }
-
-    .footer-links {
-        font-size: 0.8rem;
-    }
-}
-
   </style>
 </head>
 <body>
-  <div class="row mx-auto">
-    <div class="col-6 mx-auto">
-        <form action="/products" method="POST" class="needs-validation" novalidate>
-            <div class="mb-3">
-                <label for="naam" class="form-label">Name:</label>
-                <input type="text" class="form-control" name="name" id="naam" required placeholder="Enter the name">
-                <div class="valid-feedback">
-                  Looks good!
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-12">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3 class="card-title mb-0">Add Product</h3>
                 </div>
-                <div class="invalid-feedback">
-                    Please enter the name field.
-                </div>
-            
-            </div>
+                <div class="card-body p-4">
+                    <form action="/products" method="POST" class="needs-validation" novalidate>
+                        <!-- Product Name -->
+                        <div class="mb-3">
+                            <label for="naam" class="form-label">Product Name</label>
+                            <input type="text" class="form-control" name="name" id="naam" placeholder="Enter product name" required>
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please enter the product name.</div>
+                        </div>
+                        
+                        <!-- Image URL -->
+                        <div class="mb-3">
+                            <label for="img" class="form-label">Image URL</label>
+                            <input type="text" class="form-control" name="img" id="img" placeholder="Enter image URL" required>
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please enter the image URL.</div>
+                        </div>
 
-            <div class="mb-3">
-                <label for="img" class="form-label">Image: </label>
-                <input type="text" class="form-control" name="img" id="img" aria-describedby="emailHelp" placeholder="Image URL of the Product" required>
-                <div class="valid-feedback">
-                  Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please enter the Url field.
+                        <!-- Price -->
+                        <div class="mb-3">
+                            <label for="paisa" class="form-label">Price</label>
+                            <input type="number" class="form-control" name="price" id="paisa" placeholder="Enter price" required>
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please enter the price.</div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-3">
+                            <label for="desc" class="form-label">Description</label>
+                            <textarea class="form-control" name="desc" id="desc" rows="4" placeholder="Enter product description" required></textarea>
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please enter the description.</div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Add Product</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-
-            <div class="mb-3">
-                <label for="paisa" class="form-label">Price</label>
-                <input type="number" class="form-control" name="price" id="paisa" aria-describedby="emailHelp" placeholder="Price of the Product" required>
-                <div class="valid-feedback">
-                  Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please enter the Price field.
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <label for="desc" class="form-label">Description: </label>
-                <textarea name="desc" id="desc" rows="5" class="form-control" placeholder="Description of product" required></textarea>
-                <div class="valid-feedback">
-                  Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please enter the Descr field.
-                </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Add Product</button>
-        </form>
+        </div>
     </div>
 </div>
 <footer class="footer">
   <div class="container">
-      <div class="footer-content">
-          <p class="footer-text">© 2024 Apna Bazar. All rights reserved.</p>
-          <div class="footer-links">
-              <a href="/about" class="footer-link">About Us</a> |
-              <a href="/services" class="footer-link">Services</a> |
-              <a href="/company" class="footer-link">Company</a> |
-              <a href="/legal" class="footer-link">Legal</a>
+      <!-- Footer Sections for Links -->
+      <div class="footer-sections">
+          <div class="footer-section">
+              <h3 class="footer-title">Company</h3>
+              <ul class="footer-links">
+                  <li><a href="/about" class="footer-link">About Us</a></li>
+                  <li><a href="/services" class="footer-link">Services</a></li>
+                  <li><a href="/careers" class="footer-link">Careers</a></li>
+                  <li><a href="/legal" class="footer-link">Legal</a></li>
+                  <li><a href="/privacy" class="footer-link">Privacy Policy</a></li>
+              </ul>
+          </div>
+
+          <div class="footer-section">
+              <h3 class="footer-title">Customer Service</h3>
+              <ul class="footer-links">
+                  <li><a href="/support" class="footer-link">Support</a></li>
+                  <li><a href="/faq" class="footer-link">FAQ</a></li>
+                  <li><a href="/contact" class="footer-link">Contact Us</a></li>
+                  <li><a href="/return-policy" class="footer-link">Return Policy</a></li>
+              </ul>
+          </div>
+
+          <div class="footer-section">
+              <h3 class="footer-title">Quick Links</h3>
+              <ul class="footer-links">
+                  <li><a href="/terms" class="footer-link">Terms & Conditions</a></li>
+                  <li><a href="/shipping" class="footer-link">Shipping Information</a></li>
+                  <li><a href="/order-tracking" class="footer-link">Order Tracking</a></li>
+                  <li><a href="/site-map" class="footer-link">Site Map</a></li>
+              </ul>
+          </div>
+
+          <div class="footer-section">
+              <h3 class="footer-title">Follow Us</h3>
+              <ul class="footer-links">
+                  <li><a href="https://www.facebook.com" class="footer-link">Facebook</a></li>
+                  <li><a href="https://www.twitter.com" class="footer-link">Twitter</a></li>
+                  <li><a href="https://www.instagram.com" class="footer-link">Instagram</a></li>
+                  <li><a href="https://www.linkedin.com" class="footer-link">LinkedIn</a></li>
+              </ul>
+          </div>
+      </div>
+
+      <!-- Footer Bottom (Copyright and Subscription) -->
+      <div class="footer-bottom">
+          <p class="footer-text">© 2025 Apna Bazar. All rights reserved.</p>
+          <div class="footer-subscription">
+              <p class="footer-subscription-text">Stay updated with our latest offers and news!</p>
+              <form class="footer-subscription-form" action="#" method="POST">
+                  <input type="email" class="footer-subscription-input" placeholder="Enter your email" required>
+                  <button type="submit" class="footer-subscription-btn">Subscribe</button>
+              </form>
           </div>
       </div>
   </div>

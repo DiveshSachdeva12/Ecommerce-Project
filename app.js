@@ -35,7 +35,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'Public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
-
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Session Configuration
 const sessionConfig = {
     secret: process.env.SESSION_SECRET || 'fallbackSecret', // Use environment variable

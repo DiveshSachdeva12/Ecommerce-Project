@@ -1,7 +1,6 @@
 <%- include('../partials/navbar') %>
 <%- include('../partials/flash') %>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,106 +9,186 @@
     <title>Product Details</title>
     <link rel="stylesheet" href="/css/star.css">
     <style>
-        #card {
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .row {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+            gap: 30px;
+            margin-top: 30px;
         }
 
         .card {
             padding: 15px;
-            display: flex;
-            flex-direction: column;
-            height: 650px;
             border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .card-img-top {
             max-width: 100%;
-            padding: 50px;
-            object-fit: cover; 
+            border-radius: 8px;
+            margin-bottom: 15px;
+            object-fit: cover;
         }
 
         .card-body {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
             text-align: center;
-            flex-grow: 1; 
+            padding: 20px;
         }
 
         .card-title {
-            margin-bottom: 10px;
-            font-size: 1.2rem;
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
         }
 
-        .card-text {
-            font-size: 1rem;
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #28a745;
             margin-bottom: 15px;
         }
 
+        .original-price {
+            font-size: 1.2rem;
+            color: #6c757d;
+            text-decoration: line-through;
+            margin-right: 10px;
+        }
+
+        .card-text {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
         .btn {
-            margin-top: auto;
-            display: block;
-            margin-left: 10px;
-            width: 200px;
-            background-color: rgb(37 99 235);
+            padding: 12px;
+            background-color: #007bff;
             color: white;
-            gap: 5rem;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
-        #comment-review-box{
-            height: 200px;
-            width: 500px;
+
+        .btn:hover {
+            background-color: #0056b3;
         }
-        #delete-comment{
-            width: 150px;
+
+        .star-rating {
+            margin: 20px 0;
+        }
+
+        .starability-basic input[type="radio"] {
+            display: none;
+        }
+
+        .starability-basic label {
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .reviews-section {
+            margin-top: 40px;
+        }
+
+        .review-item {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .review-item p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .review-item .starability-result {
+            font-size: 1.2rem;
+            color: #f39c12;
+        }
+
+        .review-item .btn-danger {
+            background-color: #e11d48;
+            color: white;
+            font-weight: bold;
+        }
+
+        .review-item .btn-danger:hover {
+            background-color: #9f1239;
         }
 
         @media (max-width: 768px) {
-            .col-lg-3 {
-                flex: 0 0 50%; 
+            .row {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card-body {
+                padding: 15px;
+            }
+
+            .reviews-section {
+                margin-top: 30px;
             }
         }
-        </style>
+        .add-to-cart{
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-    <div class="mb-3">
-        <!-- <% if (msg && msg.length) { %>
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong><%= msg %></strong> 
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>   
-            </div>
-        <% } %>
-    </div> -->
 
-    <div class="container my-2">
-        <!-- displaying flash -->
-        <div class="row g-1 d-flex align-items-stretch" id="card">
-            <div class="col-lg-4 d-flex" id="img-ca rd">
-                
-                <div class="card mx-auto equal-card" style="width: 18rem;">
-                    <img src="<%= foundProduct.img %>" class="card-img-top" alt="<%= foundProduct.name %>" id="image-card">
-                    
+    <div class="container">
+        <div class="row">
+            <!-- Product Image and Details -->
+            <div class="col-lg-4">
+                <div class="card">
+                    <img src="<%= foundProduct.img %>" class="card-img-top" alt="<%= foundProduct.name %>">
                     <div class="card-body">
                         <h2 class="card-title"><%= foundProduct.name %></h2>
-                        <h5 class="card-title">₹<%= foundProduct.price %></h5>
+                        <div class="price">
+                            <span class="original-price"><%= foundProduct.originalPrice %></span>
+                            ₹<%= foundProduct.price %>
+                        </div>
                         <p class="card-text"><%= foundProduct.desc %></p>
+
                         <% if (currentUser && currentUser.role === 'seller') { %>
-                        <a href="/products/<%= foundProduct._id %>/edit" class="btn btn-primary">Edit</a>
+                            <a href="/products/<%= foundProduct._id %>/edit" class="btn">Edit Product</a>
                         <% } %>
-                        <form action="/user/<%= foundProduct._id %>/add" method="POST">
-                        <button class="btn btn-info">Add to cart</button>
+
+                        <form action="/user/<%= foundProduct._id %>/add" method="POST" class="add-to-cart">
+                            <button class="btn">Add to Cart</button>
                         </form>
-                        <a href="#" class="btn btn-primary">Buy Product</a>
+                        <form action="/user/<%= foundProduct._id %>/add" method="POST"  class="add-to-cart">
+                            <button class="btn">Buy Product</button>
+                        </form>
                     </div>
                 </div>
             </div>
+
+            <!-- Review Section -->
             <div class="col-lg-6">
-            <h1 class="display-5"><Strong>Leave a Review</Strong></h1>
+                <h1 class="display-5 mb-4"><strong>Leave a Review</strong></h1>
                 <form action="/products/<%= foundProduct._id %>/review" method="POST">
-                    <!-- Star Rating -->
-                    <fieldset class="starability-basic">
+                    <fieldset class="starability-basic star-rating">
                         <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
                         <input type="radio" id="first-rate1" name="rating" value="1" />
                         <label for="first-rate1" title="Terrible">1 star</label>
@@ -121,9 +200,8 @@
                         <label for="first-rate4" title="Very good">4 stars</label>
                         <input type="radio" id="first-rate5" name="rating" value="5" />
                         <label for="first-rate5" title="Amazing">5 stars</label>
-                      </fieldset>
+                    </fieldset>
             
-                    <!-- Comment Box -->
                     <div class="mb-3">
                         <label class="form-label" for="comment">Comment:</label>
                         <textarea class="form-control" rows="3" name="comment" id="comment" required></textarea>
@@ -131,20 +209,22 @@
             
                     <button type="submit" class="btn btn-primary">Add Review</button>
                 </form>
-            
+
                 <!-- Reviews Display -->
-                <div class="my-3">
+                <div class="reviews-section">
                     <% if (foundProduct.reviews.length > 0) { %>
                         <% for (let review of foundProduct.reviews) { %>
-                            <div class="border p-3 mb-3 rounded">
+                            <div class="review-item">
                                 <p class="starability-result" data-rating="<%= review.rating %>">
-                                    Rated: <%= review.rating %> star
                                 </p>
                                 <p class="mb-1">Comment: <%= review.comment %></p>
                                 <% if (review.createdAt) { %>
                                     <p class="text-muted mb-2">Posted on: <%= new Date(review.createdAt).toDateString() %></p>
                                 <% } %>
-                                <a href="/reviews/<%= review._id %>?_method=DELETE" class="btn btn-danger">Delete</a>
+                                <!-- Wrap the delete link inside a form to send a DELETE request -->
+                                <form action="/reviews/<%= review._id %>?_method=DELETE" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
                             </div>
                         <% } %>
                     <% } else { %>
@@ -152,6 +232,7 @@
                     <% } %>
                 </div>
                 
-            
+    </div>
+
 </body>
 </html>
