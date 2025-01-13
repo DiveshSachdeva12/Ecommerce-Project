@@ -51,13 +51,12 @@
             <span>₹<%= totalPrice %></span>  <!-- Display totalPrice, which already includes or excludes delivery charge -->
         </div>
         
-        
-        
         <button class="place-order-btn">Place Order</button>
     </div>
 </div>
 
 <style>
+    /* General container styles */
     .cart-page-container {
         display: flex;
         flex-wrap: wrap;
@@ -65,6 +64,7 @@
         margin: 20px;
     }
 
+    /* Cart items section */
     .cart-container {
         flex: 3;
         max-width: 60%;
@@ -100,6 +100,7 @@
         padding: 5px;
     }
 
+    /* Cart summary section */
     .cart-summary {
         flex: 1;
         max-width: 30%;
@@ -140,6 +141,8 @@
     .place-order-btn:hover {
         background-color: #0056b3;
     }
+
+    /* Remove button styles */
     .remove-btn {
         padding: 8px 15px;
         background-color: #ff4d4d;
@@ -166,10 +169,67 @@
         margin-right: 8px;
     }
 
+    /* Loading text */
     .loading {
         font-size: 0.8rem;
         color: #fff;
         margin-left: 10px;
+    }
+
+    /* Media queries for responsiveness */
+    @media (max-width: 1200px) {
+        .cart-container {
+            max-width: 50%;
+        }
+
+        .cart-summary {
+            max-width: 45%;
+        }
+    }
+
+    @media (max-width: 900px) {
+        .cart-container {
+            max-width: 100%;
+        }
+
+        .cart-summary {
+            max-width: 100%;
+            margin-top: 20px;
+        }
+
+        .cart-page-container {
+            flex-direction: column;
+            gap: 10px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        #img {
+            height: 80px;
+            width: 80px;
+        }
+
+        .cart-item-details h4 {
+            font-size: 1rem;
+        }
+
+        .summary-item {
+            font-size: 0.9rem;
+        }
+
+        .summary-total {
+            font-size: 1rem;
+        }
+
+        .place-order-btn {
+            font-size: 0.9rem;
+            padding: 8px;
+        }
+
+        .remove-btn {
+            font-size: 0.9rem;
+            padding: 6px 12px;
+        }
     }
 </style>
 
