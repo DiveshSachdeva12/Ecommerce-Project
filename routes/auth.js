@@ -82,6 +82,26 @@ router.get('/user/profile', isLoggedIn, (req, res) => {
       res.redirect('/user/profile');
     }
   });
+  router.get('/search', async (req, res) => {
+    try {
+        const query = req.query.q;  // Captures the search query
+
+        // If query is provided, search for products that match the name or description
+        const products = await Product.find({
+            $or: [
+                { name: { $regex: query, $options: 'i' } },  // 'i' makes it case-insensitive
+                { desc: { $regex: query, $options: 'i' } }
+            ]
+        });
+
+        // Render the products based on the search results
+        res.render('products/searchResults', { products });
+    } catch (err) {
+        console.error('Error searching products:', err);
+        res.status(500).send('Error searching products');
+    }
+});
+
   
   
 module.exports = router;

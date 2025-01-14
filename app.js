@@ -16,6 +16,9 @@ const cartRoutes = require('./routes/cart');
 require('dotenv').config();
 
 const app = express()
+const searchRoute = require('./routes/search');  // Assuming the search route is in 'routes/search.js'
+app.use(searchRoute);
+
 
 // Database Connection
 mongoose.connect(process.env.MONGODB_URL, {
