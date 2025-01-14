@@ -16,7 +16,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    gap: 20px;
 }
 
 /* Card Style */
@@ -30,7 +29,7 @@
     width: 100%;
     max-width: 18rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(18, 6, 6, 0.1);
     margin-bottom: 20px;
 }
 
@@ -120,41 +119,51 @@
 }
 
 /* Button Styling */
+/* General Button Styling */
 .btn {
     display: block;
     width: 100%;
-    padding: 12px;
-    background-color: #2563eb;
-    color: white;
-    font-weight: 500;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
     text-align: center;
-    border-radius: 5px;
+    text-transform: uppercase;
+    color: #fff;
+    background: linear-gradient(135deg, #4f46e5, #2563eb);
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
     text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-top: 15px;
-    margin-bottom: 10px; 
+    cursor: pointer;
 }
 
 .btn:hover {
-    background-color: #1d4ed8;
-    transform: translateY(-3px);
+    background: linear-gradient(135deg, #3730a3, #1d4ed8);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
 }
 
-/* Delete Button (Only for Sellers) */
+/* Delete Button Styling */
 #DELETE-product {
-    background-color: #e11d48;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
     color: white;
+    font-size: 1.1rem;
     font-weight: 600;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    padding: 12px;
-    margin-top: 15px;
-    margin-bottom: 10px;
-    width: 100%;
+    border-radius: 8px;
+    padding: 15px 20px;
+    text-align: center;
+    text-transform: uppercase;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
 }
 
 #DELETE-product:hover {
-    background-color: #9f1239;
+    background: linear-gradient(135deg, #b91c1c, #991b1b);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
 }
 
 /* Media Queries for Responsiveness */
@@ -360,13 +369,216 @@
     margin-bottom: 3rem; 
 }
 
+.h1-home {
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    color: #2563eb;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    padding: 20px;
+    background: linear-gradient(to right, #FF6F61, #2563EB);
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+/* Special Offer Banner */
+/* Add animation to the special offer banner */
+@keyframes slideIn {
+    0% {
+        transform: translateY(-100px); /* Starts from above */
+        opacity: 0; /* Invisible at the start */
+    }
+    100% {
+        transform: translateY(0); /* Ends at normal position */
+        opacity: 1; /* Fully visible */
+    }
+}
+
+/* Add animation to the text */
+@keyframes fadeInText {
+    0% {
+        opacity: 0; /* Text is invisible at the start */
+        transform: translateY(20px); /* Text starts lower */
+    }
+    100% {
+        opacity: 1; /* Text becomes visible */
+        transform: translateY(0); /* Text moves to normal position */
+    }
+}
+
+.special-offer-banner {
+    background-color: #991b1b;
+    color: white;
+    padding: 50px 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 4rem;
+    animation: slideIn 0.8s ease-out forwards; /* Apply animation */
+}
+
+/* Apply fade-in animation to the offer content */
+.offer-content {
+    max-width: 900px;
+    margin: 0 auto;
+    animation: fadeInText 1s ease-out 0.2s forwards; /* Text fades in slightly delayed */
+}
+
+/* Title styling */
+.offer-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+/* Description styling */
+.offer-description {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+/* Button styling */
+.btn-offer {
+    padding: 12px 30px;
+    background-color: #FF6F61;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+/* Button hover effect */
+.btn-offer:hover {
+    background-color: #ff5733;
+}
+
+.category-card {
+    margin-top: 20rem;
+    background-color: #f7f7f7;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.category-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+.category-img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+.testimonial-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.testimonial-text {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #555;
+}
+.h1-home1 {
+    position: absolute;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #2563eb;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    padding: 20px;
+    background: linear-gradient(to right, #FF6F61, #2563EB);
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: fadeIn 1.5s ease-in-out;
+    margin-top: 13rem;
+margin-left: 19rem;
+
+}
+@media (max-width: 991px) {
+    /* Adjust margins and font size for medium screens */
+    .category-card {
+        margin-top: 10rem; /* Reduce spacing for medium screens */
+    }
+    .h1-home1 {
+        font-size: 2.5rem; /* Adjust headline size */
+        margin-top: 5rem; /* Adjust positioning */
+        margin-left: 10rem;
+    }
+    .category-img {
+        height: 120px; /* Reduce image height */
+    }
+}
+
+@media (max-width: 767px) {
+    /* Adjust margins and layout for smaller screens */
+    .category-card {
+        margin-top: 2rem;
+        height: 300px; 
+    }
+    .h1-home1 {
+        font-size: 2rem; /* Adjust headline size */
+        margin-top: 3rem;
+        margin-left: 5rem;
+        text-align: center; /* Center align text for smaller screens */
+    }
+    .category-img {
+        height: 200px; /* Further reduce image height */
+    }
+}
+
+@media (max-width: 575px) {
+    /* Adjust layout for the smallest screens */
+    .category-card {
+        /* border: 5px solid rgb(132, 3, 182); */
+        height: 240px;
+    }
+    .h1-home1 {
+        font-size: 2.5rem; /* Smaller headline size */
+        margin-top: -5rem !important;
+        margin-left: -1rem;
+    }
+    .category-img {
+        height: 80px; /* Adjust image height for smallest screens */
+        object-fit: cover;
+    }
+    #main{
+        margin-top: 4rem !important;
+    }
+}
+
+
 
     </style>
 </head>
 <body>
     <div class="container" style="margin-top: 0;">
+        <!-- Special Offer Banner -->
+        <section class="special-offer-banner">
+            <div class="offer-content">
+                <h2 class="offer-title">Exclusive Offer: Get 20% Off On All Products!</h2>
+                <p class="offer-description">Don't miss out on this limited-time offer. Shop now and save big!</p>
+                <a href="http://localhost:8080/user/cart" class="btn-offer">Shop Now</a>
+            </div>
+        </section>
+    
+        <!-- Products Section -->
         <div class="row g-3" id="card">
-            <h1 class="h1-product">Explore Our Products</h1>
+            <h1 class="h1-home">Explore Our Products</h1>
             <% for(let item of products) { %>
                 <div class="col-lg-3 col-md-4 col-sm-6 d-flex">
                     <div class="card mx-auto">
@@ -391,6 +603,37 @@
             <% } %>
         </div>
     </div>
+   <div class="container my-5" id="main">
+    <!-- Trending Categories Section -->
+    <h1 class="h1-home1">Trending Categories</h1>
+    <div class="row g-4 my-4">
+        <div class="col-lg-4 col-md-6">
+            <div class="category-card text-center p-4">
+                <img src="https://media.istockphoto.com/id/178716575/photo/mobile-devices.webp?a=1&b=1&s=612x612&w=0&k=20&c=Ry0XpR1Tg8kHXf20hSmABan6uSbubQ0JCi4p6yEMoP0=" alt="Electronics" class="category-img">
+                <h3>Electronics</h3>
+                <a href="" class="btn btn-primary mt-3">Explore</a>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="category-card text-center p-4">
+                <img src="https://media.istockphoto.com/id/2161343108/photo/dressmaker-adjustng-a-dress.webp?a=1&b=1&s=612x612&w=0&k=20&c=lJCS7ju4giOn2a4aA8gYzjGiFgoUamTKKFabuuwjbfk=" alt="Electronics" class="category-img" alt="Fashion" class="category-img">
+                <h3>Fashion</h3>
+                <a href="" class="btn btn-primary mt-3">Explore</a>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="category-card text-center p-4">
+                <img src="https://media.istockphoto.com/id/1212170511/photo/scandinavian-style-living-room-interior.jpg?s=612x612&w=0&k=20&c=3iI_6kD95u4mDx8wBx8gktvFpvA1rceZfAsC0WCO82c=" alt="Home Essentials" class="category-img">
+                <h3>Home Essentials</h3>
+                <a href="" class="btn btn-primary mt-3">Explore</a>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    <!-- Call-to-Action Section -->
+
+    
     
     <footer class="footer">
         <div class="container">
@@ -451,7 +694,12 @@
             </div>
         </div>
     </footer>
-      
+
+    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+   
+    
 </body>
 </html>
