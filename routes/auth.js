@@ -13,6 +13,7 @@ router.get('/register',(req,res)=>{
     res.render('auth/signup');
 })  
 
+
 // to actually registe a user
 router.post('/register', async (req, res) => {
     const { username, email, password, confirm_password, role } = req.body;
