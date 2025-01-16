@@ -132,7 +132,7 @@ router.post("/send-otp", async (req, res) => {
   });
 
   const mailOptions = {
-    from: "diveshkumarsachdeva85@gmail.com", 
+    from: "Apnabazaaaar@gmail.com", 
     to: email, 
     subject: "Your OTP Code - ApnaBazaar",
     html: `
