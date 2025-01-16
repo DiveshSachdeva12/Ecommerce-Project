@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Review = require('./Review'); // Import the Review model
+const Review = require('./Review'); 
 
 const producSchema = new mongoose.Schema({
     name: {
@@ -32,7 +32,6 @@ const producSchema = new mongoose.Schema({
     }
 });
 
-// Middleware to delete reviews when a product is deleted
 producSchema.post('findOneAndDelete', async (product) => {
     if (product.reviews.length > 0) {
         try {

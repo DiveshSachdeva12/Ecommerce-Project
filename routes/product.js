@@ -78,7 +78,26 @@ router.patch('/products/:id', isLoggedIn,validateProduct ,async(req,res)=>{
    }
 
 })
-
+router.get('/product/:id', async (req, res) => {
+   const { id } = req.params;
+ 
+   // Check if id is a valid ObjectId
+   if (!mongoose.Types.ObjectId.isValid(id)) {
+     return res.status(400).send('Invalid product ID');
+   }
+ 
+   try {
+     const product = await Product.findById(id);
+     if (!product) {
+       return res.status(404).send('Product not found');
+     }
+     res.render('products/show', { product });
+   } catch (error) {
+     console.error(error);
+     res.status(500).send('Server Error');
+   }
+ });
+ 
 // to delete a product
 router.delete('/products/:id',isProductAuthor,isLoggedIn,async(req,res)=>{
    try{

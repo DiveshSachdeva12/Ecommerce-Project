@@ -2,7 +2,6 @@
 <%- include('../partials/flash') %>
 
 <style>
-  /* General reset and styling for the body */
   body {
       font-family: 'Arial', sans-serif;
       margin: 0;
@@ -11,10 +10,9 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background-color: #f4f7fc; /* Light background color */
+      background-color: #f4f7fc; 
   }
 
-  /* Container for the login form */
   .login-container {
       background-color: white;
       width: 100%;
@@ -25,7 +23,6 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
-  /* Heading style */
   .login-container h2 {
       text-align: center;
       font-size: 28px;
@@ -33,7 +30,6 @@
       color: #333;
   }
 
-  /* Form group styling */
   .form-group {
       margin-bottom: 20px;
   }
@@ -60,7 +56,6 @@
       box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
   }
 
-  /* Login button style */
   .login-btn {
       width: 100%;
       padding: 12px;
@@ -78,7 +73,6 @@
       background-color: #0056b3;
   }
 
-  /* Bottom section for signup link */
   .bottom-section {
       text-align: center;
       margin-top: 20px;
@@ -97,6 +91,21 @@
   .bottom-section a:hover {
       text-decoration: underline;
   }
+
+  .forgot-password {
+      text-align: center;
+      margin-top: 15px;
+  }
+
+  .forgot-password a {
+      color: #007bff;
+      font-size: 14px;
+      text-decoration: none;
+  }
+
+  .forgot-password a:hover {
+      text-decoration: underline;
+  }
 </style>
 
 <!-- Login Form -->
@@ -110,16 +119,17 @@
     
     <div class="form-group">
       <label for="password">Password:</label>
-      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+      <input type="password" id="password"  name="password" placeholder="Enter your password" required>
     </div>
     
     <button type="submit" class="login-btn">Login</button>
   </form>
 
+  <div class="forgot-password">
+    <p><a href="/forgot-password">Forgot Password?</a></p>
+  </div>
+
   <div class="bottom-section">
     <p>Don't have an account? <a href="/register">Sign Up</a></p>
   </div>
 </div>
-
-</body>
-</html>

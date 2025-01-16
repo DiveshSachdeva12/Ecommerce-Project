@@ -4,14 +4,12 @@ const router = express.Router();
 const { isLoggedIn } = require('../middleware');
 const Product = require('../models/Product');
 const User = require('../models/User');
-const Review = require('../models/Review'); // Include the Review model
+const Review = require('../models/Review');
 
-// Route to handle DELETE request for review
 router.delete('/reviews/:id', isLoggedIn, async (req, res) => {
     try {
         const reviewId = req.params.id;
 
-        // Attempt to find and delete the review
         const deletedReview = await Review.findByIdAndDelete(reviewId);
 
         if (!deletedReview) {
@@ -19,7 +17,6 @@ router.delete('/reviews/:id', isLoggedIn, async (req, res) => {
             return res.redirect('/products');
         }
 
-        // Redirect to the product page after successful deletion
         const product = await Product.findById(deletedReview.productId);  // Find the associated product
         if (product) {
             req.flash('success', 'Review deleted successfully');
@@ -34,7 +31,6 @@ router.delete('/reviews/:id', isLoggedIn, async (req, res) => {
     }
 });
 
-// Cart route to view user's cart
 router.get('/user/cart', isLoggedIn, async (req, res) => {
     const user = await User.findById(req.user._id).populate('cart');
     
@@ -46,7 +42,6 @@ router.get('/user/cart', isLoggedIn, async (req, res) => {
     res.render('cart/cart', { user, totalPrice, totalItems });
 });
 
-// Add product to the user's cart
 router.post('/user/:productId/add', isLoggedIn, async (req, res) => {
     const { productId } = req.params;
     const userId = req.user._id;
@@ -86,9 +81,8 @@ router.post('/user/cart/remove/:productId', isLoggedIn, async (req, res) => {
 
         const productIndex = user.cart.indexOf(productId);
 
-        // If the product exists in the cart, remove it
         if (productIndex > -1) {
-            user.cart.splice(productIndex, 1);  // Remove the product
+            user.cart.splice(productIndex, 1);  
             await user.save();
             req.flash('success', 'Product removed from cart');
         } else {
